@@ -758,7 +758,7 @@ const App: React.FC = () => {
                 </div>
                 <Button 
                   variant="dark" 
-                  className="w-full md:w-auto px-10 py-4 text-base bg-[#775927] hover:bg-[#634a21] whitespace-nowrap"
+                  className="w-full md:w-auto px-10 py-4 text-base md:text-xs bg-[#775927] hover:bg-[#634a21] leading-tight"
                   onClick={handleReminder}
                 >
                   Ricordami la prossima visita
