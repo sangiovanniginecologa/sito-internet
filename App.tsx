@@ -15,26 +15,26 @@ import {
   BookOpen,
   GraduationCap,
   Star,
-  ArrowRight,
-  Zap,
-  Dna,
-  Check,
-  User,
-  MessageCircle,
   Building2,
   Calendar,
-  ArrowUpRight,
+  Baby,
+  FileText,
+  Pill,
+  Menu,
+  Zap,
+  CheckCircle2,
   Ear,
   ClipboardCheck,
-  ShieldCheck,
-  Baby,
+  User,
   FlaskConical,
   Search,
   Users,
   AlertTriangle,
-  CheckCircle2,
-  FileText,
-  Pill
+  ArrowRight,
+  ArrowUpRight,
+  Check,
+  MessageCircle,
+  ShieldCheck
 } from 'lucide-react';
 
 // Reusable Button Component
@@ -77,7 +77,7 @@ const ServicesPage = ({ onNavigate, onScroll }) => {
               <Button variant="secondary" className="bg-white" onClick={() => onScroll('contatti')}>Contattami</Button>
             </div>
           </div>
-          <div className="relative rounded-[40px] overflow-hidden shadow-2xl aspect-[4/3] group">
+          <div className="relative rounded-[40px] overflow-hidden shadow-2xl aspect-square md:aspect-[4/3] group">
             <img 
               src="/assets/services_hero_new.jpg" 
               alt="Ambiente Medico" 
@@ -348,6 +348,7 @@ const App: React.FC = () => {
   const [currentPage, setCurrentPage] = useState('home');
   const [scrolled, setScrolled] = useState(false);
   const [showCV, setShowCV] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -356,6 +357,7 @@ const App: React.FC = () => {
   }, []);
 
   useEffect(() => {
+    setIsMobileMenuOpen(false);
     window.scrollTo(0, 0);
   }, [currentPage]);
 
@@ -406,11 +408,13 @@ const App: React.FC = () => {
     <div className="min-h-screen bg-medical-bg font-sans text-medical-text">
 
       {/* Navbar */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white/80 backdrop-blur-md shadow-sm py-4' : 'bg-transparent py-6'}`}>
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled || isMobileMenuOpen ? 'bg-white/95 backdrop-blur-md shadow-sm' : 'bg-transparent'} ${isMobileMenuOpen ? 'py-4' : scrolled ? 'py-4' : 'py-6'}`}>
         <div className="container mx-auto px-6 flex justify-between items-center">
-          <div className="font-serif text-xl md:text-2xl font-bold tracking-tight text-medical-text">
+          <div className="font-serif text-xl md:text-2xl font-bold tracking-tight text-medical-text z-50">
             Dott.ssa Maria Cristina Sangiovanni
           </div>
+          
+          {/* Desktop Menu */}
           <div className="hidden md:flex gap-8 items-center text-xs font-bold uppercase tracking-widest text-medical-text/60">
             <button onClick={() => setCurrentPage('home')} className={`hover:text-medical-primary transition-colors ${currentPage === 'home' ? 'text-medical-primary' : ''}`}>Home</button>
             <button onClick={() => setCurrentPage('servizi')} className={`hover:text-medical-primary transition-colors ${currentPage === 'servizi' ? 'text-medical-primary' : ''}`}>Di cosa mi occupo</button>
@@ -418,17 +422,56 @@ const App: React.FC = () => {
             <button onClick={() => scrollToSection('contatti')} className="hover:text-medical-primary transition-colors">Contatti</button>
             <Button variant="dark" className="ml-4" onClick={() => scrollToSection('contatti')}>Prenota Visita</Button>
           </div>
+
+          {/* Mobile Menu Toggle */}
+          <button 
+            className="md:hidden z-50 text-medical-text p-2"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
         </div>
+
+        {/* Mobile Menu Overlay */}
+        {isMobileMenuOpen && (
+          <div className="fixed inset-0 bg-white z-[100] md:hidden animate-fade-in">
+            <div className="absolute top-6 right-6">
+              <button onClick={() => setIsMobileMenuOpen(false)} className="text-medical-text p-2">
+                <X size={32} />
+              </button>
+            </div>
+            <div className="flex flex-col items-center justify-center h-full space-y-10 text-2xl font-serif text-medical-text">
+              <button onClick={() => { setCurrentPage('home'); setIsMobileMenuOpen(false); }} className={currentPage === 'home' ? 'text-medical-primary italic underline underline-offset-8' : ''}>Home</button>
+              <button onClick={() => { setCurrentPage('servizi'); setIsMobileMenuOpen(false); }} className={currentPage === 'servizi' ? 'text-medical-primary italic underline underline-offset-8' : ''}>Di cosa mi occupo</button>
+              <button onClick={() => { setCurrentPage('about'); setIsMobileMenuOpen(false); }} className={currentPage === 'about' ? 'text-medical-primary italic underline underline-offset-8' : ''}>Chi Sono</button>
+              <button onClick={() => { scrollToSection('contatti'); setIsMobileMenuOpen(false); }} className="text-medical-text/60">Contatti</button>
+              <div className="pt-8">
+                <Button variant="dark" className="px-12 py-5 text-lg" onClick={() => { scrollToSection('contatti'); setIsMobileMenuOpen(false); }}>Prenota Visita</Button>
+              </div>
+            </div>
+          </div>
+        )}
       </nav>
 
       <main>
         {currentPage === 'home' ? (
           <>
             {/* Hero Section */}
-            <section className="relative min-h-[90vh] flex items-start pt-32 md:pt-40 overflow-hidden bg-medical-bg">
-              {/* Background Image Layer (Absolute) */}
+            <section className="relative min-h-screen flex items-center pt-20 md:pt-40 overflow-hidden bg-medical-bg">
+              
+              {/* Mobile Hero Image (Full Screen Background) */}
+              <div className="absolute inset-0 z-0 md:hidden">
+                <img 
+                  src="/assets/sangiovanni_real_hero.jpg" 
+                  alt="Background" 
+                  className="w-full h-full object-cover opacity-40"
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-medical-bg/40 via-transparent to-medical-bg" />
+              </div>
+
+              {/* Desktop Hero Image (Split) */}
               <div
-                className="absolute right-0 bottom-0 w-full md:w-[50%] h-[85%] z-0 opacity-95 transition-all duration-1000"
+                className="hidden md:block absolute right-0 bottom-0 w-[50%] h-[85%] z-0 opacity-95 transition-all duration-1000"
                 style={{
                   backgroundImage: 'url(/assets/sangiovanni_real_hero.jpg)',
                   backgroundSize: 'contain',
@@ -440,26 +483,19 @@ const App: React.FC = () => {
               />
 
               <div className="container mx-auto px-6 relative z-10">
-                <div className="max-w-2xl space-y-8 animate-fade-in">
-                  <div className="inline-block px-3 py-1 border border-medical-primary/20 text-medical-primary text-[10px] font-bold tracking-[0.2em] uppercase rounded-full bg-white/50 backdrop-blur-sm">
+                <div className="max-w-2xl space-y-10 animate-fade-in text-center md:text-left mx-auto md:mx-0">
+                  <div className="inline-block px-4 py-1.5 border border-medical-primary/20 text-medical-primary text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase rounded-full bg-white/80 backdrop-blur-sm">
                     Ginecologia e Ostetricia
                   </div>
-                  <h1 className="font-serif text-5xl md:text-7xl leading-[1.1] text-medical-text drop-shadow-sm">
+                  <h1 className="font-serif text-5xl md:text-7xl leading-[1.1] text-medical-text">
                     Accompagno ogni donna in <span className="italic text-medical-primary">ogni fase della vita.</span>
                   </h1>
-                  <p className="text-lg text-medical-text/70 max-w-lg leading-relaxed bg-medical-bg/30 backdrop-blur-sm rounded-lg p-2 -ml-2">
-                    Un approccio empatico e professionale dedicato alla salute e al benessere femminile, dalla pubertà alla menopausa, o per chi lo desidera, passando per la maternità.
+                  <p className="text-2xl md:text-2xl text-medical-text leading-relaxed mx-auto md:mx-0 font-medium">
+                    Prevenzione, cura e ascolto per il benessere femminile, con un approccio empatico e professionale.
                   </p>
-                  <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                    <Button onClick={() => scrollToSection('contatti')}>Prenota una Visita</Button>
-                    <Button variant="secondary" className="bg-white/80 backdrop-blur-sm" onClick={() => setCurrentPage('servizi')}>Di cosa mi occupo</Button>
-                    <button 
-                      onClick={handleReminder}
-                      className="flex items-center justify-center gap-2 px-6 py-4 rounded-lg font-bold uppercase tracking-widest text-[10px] transition-all bg-medical-primary/10 border border-medical-primary/20 text-medical-primary hover:bg-medical-primary hover:text-white group"
-                    >
-                      <Calendar size={14} className="group-hover:scale-110 transition-transform" />
-                      Ricordami la prossima visita
-                    </button>
+                  <div className="flex flex-col sm:flex-row gap-6 justify-center md:justify-start pt-6">
+                    <Button variant="dark" className="px-12 py-6 text-base md:text-xs" onClick={() => scrollToSection('contatti')}>Prenota una Visita</Button>
+                    <Button variant="secondary" className="px-12 py-6 text-base md:text-xs bg-white/90 backdrop-blur-sm" onClick={() => setCurrentPage('servizi')}>Scopri i Servizi</Button>
                   </div>
                 </div>
               </div>
