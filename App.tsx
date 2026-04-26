@@ -66,9 +66,9 @@ const ServicesPage = ({ onNavigate, onScroll }) => {
               Percorsi di Cura
             </div>
             <h1 className="font-serif text-5xl md:text-6xl text-medical-text leading-tight">Di cosa mi occupo</h1>
-            <p className="text-xl text-medical-text/80 leading-relaxed italic">
-              Supporto clinico e umano in ogni fase della vita femminile, dalla prevenzione alla maternità.
-            </p>
+            <p className="text-xl text-medical-text/60 max-w-2xl mx-auto leading-relaxed">
+            Supporto clinico e umano in ogni fase della vita femminile, dalla pubertà alla menopausa passando per la maternità.
+          </p>
             <p className="text-base text-medical-text/60 leading-relaxed">
               Ogni fase della vita richiede bisogni diversi: prevenzione, contraccezione, gravidanza o gestione di patologie complesse. Offro valutazioni cliniche accurate per costruire un percorso personalizzato basato sulla tua storia.
             </p>
