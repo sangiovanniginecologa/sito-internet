@@ -407,10 +407,10 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen bg-medical-bg font-sans text-medical-text">
 
-      {/* Navbar */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled || isMobileMenuOpen ? 'bg-white/95 backdrop-blur-md shadow-sm' : 'bg-transparent'} ${isMobileMenuOpen ? 'py-4' : scrolled ? 'py-4' : 'py-6'}`}>
+      {/* Navbar - Hidden when mobile menu is open to avoid double buttons */}
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isMobileMenuOpen ? 'hidden' : scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm py-4' : 'bg-transparent py-6'}`}>
         <div className="container mx-auto px-6 flex justify-between items-center">
-          <div className="font-serif text-xl md:text-2xl font-bold tracking-tight text-medical-text z-50">
+          <div className="font-serif text-xl md:text-2xl font-bold tracking-tight text-medical-text">
             Dott.ssa Maria Cristina Sangiovanni
           </div>
           
@@ -434,50 +434,53 @@ const App: React.FC = () => {
 
       </nav>
 
-      {/* Mobile Menu Overlay - Outside nav for full coverage */}
+      {/* Mobile Menu Overlay - Forced Full Screen */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 bg-[#fff8f6] z-[200] md:hidden flex flex-col h-screen w-screen overflow-hidden animate-fade-in">
+        <div 
+          className="fixed inset-0 bg-white z-[999] md:hidden flex flex-col animate-fade-in"
+          style={{ width: '100vw', height: '100vh', left: 0, top: 0 }}
+        >
           {/* Header in Overlay */}
-          <div className="flex justify-between items-center px-6 py-8 border-b border-medical-primary/10 bg-white">
-            <div className="font-serif text-xl font-bold text-medical-text">
-              M.C. Sangiovanni
+          <div className="flex justify-between items-center px-8 py-8 border-b border-medical-primary/10">
+            <div className="font-serif text-2xl font-bold text-medical-text">
+              Menu
             </div>
             <button onClick={() => setIsMobileMenuOpen(false)} className="text-medical-text p-2 hover:bg-medical-primary/5 rounded-full">
-              <X size={36} />
+              <X size={44} />
             </button>
           </div>
 
-          {/* Menu Links - Monumental Size */}
-          <div className="flex-grow flex flex-col items-center justify-center space-y-10 pb-12 overflow-y-auto px-6">
+          {/* Menu Links - Truly Monumental */}
+          <div className="flex-grow flex flex-col items-center justify-center space-y-14 px-8 pb-10">
             <button 
               onClick={() => { setCurrentPage('home'); setIsMobileMenuOpen(false); }} 
-              className={`text-5xl font-serif tracking-tight py-2 ${currentPage === 'home' ? 'text-medical-primary italic underline underline-offset-[16px]' : 'text-medical-text'}`}
+              className={`text-6xl font-serif tracking-tight py-2 w-full text-center ${currentPage === 'home' ? 'text-medical-primary italic underline underline-offset-[20px]' : 'text-medical-text'}`}
             >
               Home
             </button>
             <button 
               onClick={() => { setCurrentPage('servizi'); setIsMobileMenuOpen(false); }} 
-              className={`text-5xl font-serif tracking-tight py-2 ${currentPage === 'servizi' ? 'text-medical-primary italic underline underline-offset-[16px]' : 'text-medical-text'}`}
+              className={`text-6xl font-serif tracking-tight py-2 w-full text-center ${currentPage === 'servizi' ? 'text-medical-primary italic underline underline-offset-[20px]' : 'text-medical-text'}`}
             >
               Servizi
             </button>
             <button 
               onClick={() => { setCurrentPage('about'); setIsMobileMenuOpen(false); }} 
-              className={`text-5xl font-serif tracking-tight py-2 ${currentPage === 'about' ? 'text-medical-primary italic underline underline-offset-[16px]' : 'text-medical-text'}`}
+              className={`text-6xl font-serif tracking-tight py-2 w-full text-center ${currentPage === 'about' ? 'text-medical-primary italic underline underline-offset-[20px]' : 'text-medical-text'}`}
             >
               Chi Sono
             </button>
             <button 
               onClick={() => { scrollToSection('contatti'); setIsMobileMenuOpen(false); }} 
-              className="text-5xl font-serif tracking-tight py-2 text-medical-text/60"
+              className="text-6xl font-serif tracking-tight py-2 w-full text-center text-medical-text/40"
             >
               Contatti
             </button>
             
-            <div className="pt-10 w-full">
+            <div className="pt-12 w-full">
               <Button 
                 variant="dark" 
-                className="w-full py-8 text-2xl shadow-2xl rounded-[30px]" 
+                className="w-full py-10 text-3xl shadow-2xl rounded-[40px]" 
                 onClick={() => { scrollToSection('contatti'); setIsMobileMenuOpen(false); }}
               >
                 Prenota Visita
