@@ -456,48 +456,43 @@ const App: React.FC = () => {
       <main>
         {currentPage === 'home' ? (
           <>
-            {/* Hero Section */}
-            <section className="relative min-h-screen flex items-center pt-20 md:pt-40 overflow-hidden bg-medical-bg">
+            {/* Hero Section - Stacked on Mobile, Split on Desktop */}
+            <section className="relative min-h-screen flex flex-col md:flex-row bg-medical-bg overflow-hidden">
               
-              {/* Mobile Hero Image (Full Screen Background) */}
-              <div className="absolute inset-0 z-0 md:hidden">
-                <img 
-                  src="/assets/sangiovanni_real_hero.jpg" 
-                  alt="Background" 
-                  className="w-full h-full object-cover opacity-40"
-                />
-                <div className="absolute inset-0 bg-gradient-to-b from-medical-bg/40 via-transparent to-medical-bg" />
-              </div>
-
-              {/* Desktop Hero Image (Split) */}
-              <div
-                className="hidden md:block absolute right-0 bottom-0 w-[50%] h-[85%] z-0 opacity-95 transition-all duration-1000"
-                style={{
-                  backgroundImage: 'url(/assets/sangiovanni_real_hero.jpg)',
-                  backgroundSize: 'contain',
-                  backgroundPosition: 'bottom right',
-                  backgroundRepeat: 'no-repeat',
-                  maskImage: 'linear-gradient(to left, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%)',
-                  WebkitMaskImage: 'linear-gradient(to left, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%)'
-                }}
-              />
-
-              <div className="container mx-auto px-6 relative z-10">
-                <div className="max-w-2xl space-y-10 animate-fade-in text-center md:text-left mx-auto md:mx-0">
-                  <div className="inline-block px-4 py-1.5 border border-medical-primary/20 text-medical-primary text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase rounded-full bg-white/80 backdrop-blur-sm">
-                    Ginecologia e Ostetricia
-                  </div>
-                  <h1 className="font-serif text-5xl md:text-7xl leading-[1.1] text-medical-text">
-                    Accompagno ogni donna in <span className="italic text-medical-primary">ogni fase della vita.</span>
-                  </h1>
-                  <p className="text-2xl md:text-2xl text-medical-text leading-relaxed mx-auto md:mx-0 font-medium">
-                    Prevenzione, cura e ascolto per il benessere femminile, con un approccio empatico e professionale.
-                  </p>
-                  <div className="flex flex-col sm:flex-row gap-6 justify-center md:justify-start pt-6">
-                    <Button variant="dark" className="px-12 py-6 text-base md:text-xs" onClick={() => scrollToSection('contatti')}>Prenota una Visita</Button>
-                    <Button variant="secondary" className="px-12 py-6 text-base md:text-xs bg-white/90 backdrop-blur-sm" onClick={() => setCurrentPage('servizi')}>Scopri i Servizi</Button>
+              {/* Text Side */}
+              <div className="flex-1 flex items-center z-10 pt-32 pb-12 md:py-0">
+                <div className="container mx-auto px-6">
+                  <div className="max-w-2xl space-y-8 animate-fade-in text-center md:text-left mx-auto md:mx-0">
+                    <div className="inline-block px-4 py-1.5 border border-medical-primary/20 text-medical-primary text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase rounded-full bg-white/80 backdrop-blur-sm">
+                      Ginecologia e Ostetricia
+                    </div>
+                    <h1 className="font-serif text-5xl md:text-7xl leading-[1.1] text-medical-text">
+                      Accompagno ogni donna in <span className="italic text-medical-primary">ogni fase della vita.</span>
+                    </h1>
+                    <p className="text-xl md:text-2xl text-medical-text leading-relaxed mx-auto md:mx-0 font-medium">
+                      Prevenzione, cura e ascolto per il benessere femminile, con un approccio empatico e professionale.
+                    </p>
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-4">
+                      <Button variant="dark" className="px-10 py-5 text-base md:text-xs" onClick={() => scrollToSection('contatti')}>Prenota una Visita</Button>
+                      <Button variant="secondary" className="px-10 py-5 text-base md:text-xs bg-white/90" onClick={() => setCurrentPage('servizi')}>Scopri i Servizi</Button>
+                    </div>
                   </div>
                 </div>
+              </div>
+
+              {/* Image Side - Full Width on Mobile, Half on Desktop */}
+              <div className="relative w-full md:w-[50%] h-[50vh] md:h-screen overflow-hidden">
+                <img 
+                  src="/assets/sangiovanni_real_hero.jpg" 
+                  alt="Dott.ssa Maria Cristina Sangiovanni"
+                  className="w-full h-full object-cover object-top md:object-contain md:object-right-bottom transition-all duration-1000"
+                  style={{
+                    maskImage: window.innerWidth > 768 ? 'linear-gradient(to left, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%)' : 'none',
+                    WebkitMaskImage: window.innerWidth > 768 ? 'linear-gradient(to left, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%)' : 'none'
+                  }}
+                />
+                {/* Mobile shadow overlay to transition to next section */}
+                <div className="absolute inset-0 bg-gradient-to-t from-medical-bg via-transparent to-transparent md:hidden" />
               </div>
             </section>
 
