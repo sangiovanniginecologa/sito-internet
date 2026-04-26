@@ -361,6 +361,15 @@ const App: React.FC = () => {
     window.scrollTo(0, 0);
   }, [currentPage]);
 
+  // Block scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [isMobileMenuOpen]);
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -434,53 +443,53 @@ const App: React.FC = () => {
 
       </nav>
 
-      {/* Mobile Menu Overlay - Forced Full Screen */}
+      {/* Mobile Menu Overlay - Forced Full Screen Bulletproof */}
       {isMobileMenuOpen && (
         <div 
-          className="fixed inset-0 bg-white z-[999] md:hidden flex flex-col animate-fade-in"
-          style={{ width: '100vw', height: '100vh', left: 0, top: 0 }}
+          className="fixed inset-0 bg-[#FCF9F7] z-[9999] md:hidden flex flex-col animate-fade-in"
+          style={{ width: '100%', height: '100%', left: 0, top: 0, right: 0, bottom: 0, margin: 0, padding: 0 }}
         >
           {/* Header in Overlay */}
           <div className="flex justify-between items-center px-8 py-8 border-b border-medical-primary/10">
             <div className="font-serif text-2xl font-bold text-medical-text">
               Menu
             </div>
-            <button onClick={() => setIsMobileMenuOpen(false)} className="text-medical-text p-2 hover:bg-medical-primary/5 rounded-full">
-              <X size={44} />
+            <button onClick={() => setIsMobileMenuOpen(false)} className="text-medical-text p-2 hover:bg-medical-primary/5 rounded-full transition-colors">
+              <X size={48} />
             </button>
           </div>
 
-          {/* Menu Links - Truly Monumental */}
-          <div className="flex-grow flex flex-col items-center justify-center space-y-14 px-8 pb-10">
+          {/* Menu Links - Truly Monumental and Spaced */}
+          <div className="flex-grow flex flex-col items-center justify-center space-y-12 px-8 pb-12">
             <button 
               onClick={() => { setCurrentPage('home'); setIsMobileMenuOpen(false); }} 
-              className={`text-6xl font-serif tracking-tight py-2 w-full text-center ${currentPage === 'home' ? 'text-medical-primary italic underline underline-offset-[20px]' : 'text-medical-text'}`}
+              className={`text-6xl font-serif tracking-tighter py-3 w-full text-center transition-all ${currentPage === 'home' ? 'text-medical-primary italic underline underline-offset-[24px]' : 'text-medical-text opacity-90'}`}
             >
               Home
             </button>
             <button 
               onClick={() => { setCurrentPage('servizi'); setIsMobileMenuOpen(false); }} 
-              className={`text-6xl font-serif tracking-tight py-2 w-full text-center ${currentPage === 'servizi' ? 'text-medical-primary italic underline underline-offset-[20px]' : 'text-medical-text'}`}
+              className={`text-6xl font-serif tracking-tighter py-3 w-full text-center transition-all ${currentPage === 'servizi' ? 'text-medical-primary italic underline underline-offset-[24px]' : 'text-medical-text opacity-90'}`}
             >
               Servizi
             </button>
             <button 
               onClick={() => { setCurrentPage('about'); setIsMobileMenuOpen(false); }} 
-              className={`text-6xl font-serif tracking-tight py-2 w-full text-center ${currentPage === 'about' ? 'text-medical-primary italic underline underline-offset-[20px]' : 'text-medical-text'}`}
+              className={`text-6xl font-serif tracking-tighter py-3 w-full text-center transition-all ${currentPage === 'about' ? 'text-medical-primary italic underline underline-offset-[24px]' : 'text-medical-text opacity-90'}`}
             >
               Chi Sono
             </button>
             <button 
               onClick={() => { scrollToSection('contatti'); setIsMobileMenuOpen(false); }} 
-              className="text-6xl font-serif tracking-tight py-2 w-full text-center text-medical-text/40"
+              className="text-6xl font-serif tracking-tighter py-3 w-full text-center text-medical-text/30"
             >
               Contatti
             </button>
             
-            <div className="pt-12 w-full">
+            <div className="pt-16 w-full">
               <Button 
                 variant="dark" 
-                className="w-full py-10 text-3xl shadow-2xl rounded-[40px]" 
+                className="w-full py-12 text-4xl shadow-2xl rounded-[50px] font-serif" 
                 onClick={() => { scrollToSection('contatti'); setIsMobileMenuOpen(false); }}
               >
                 Prenota Visita
