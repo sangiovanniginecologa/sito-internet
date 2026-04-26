@@ -34,7 +34,8 @@ import {
   ArrowUpRight,
   Check,
   MessageCircle,
-  ShieldCheck
+  ShieldCheck,
+  Sun
 } from 'lucide-react';
 
 // Reusable Button Component
@@ -127,7 +128,8 @@ const ServicesPage = ({ onNavigate, onScroll }) => {
               { icon: <FlaskConical size={24} />, title: "Endocrinologia", desc: "PCOS, irregolarità e disturbi ormonali." },
               { icon: <Search size={24} />, title: "Patologia Vulvare", desc: "Lesioni vulvari e gestione specialistica." },
               { icon: <Users size={24} />, title: "Infertilità", desc: "Inquadramento e percorso preconcezionale." },
-              { icon: <Heart size={24} />, title: "Contraccezione", desc: "Scelta consapevole e consulenza riproduttiva." }
+              { icon: <Heart size={24} />, title: "Contraccezione", desc: "Scelta consapevole e consulenza riproduttiva." },
+              { icon: <Sun size={24} />, title: "Menopausa", desc: "Gestione dei sintomi, prevenzione dell'osteoporosi e benessere ormonale." }
             ].map((s, i) => (
               <div key={i} className="bg-medical-bg/20 p-6 rounded-3xl border border-transparent hover:border-medical-primary/10 hover:bg-white transition-all shadow-sm hover:shadow-md group">
                 <div className="text-medical-primary mb-4 group-hover:scale-110 transition-transform">{s.icon}</div>
