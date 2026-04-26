@@ -434,19 +434,52 @@ const App: React.FC = () => {
 
         {/* Mobile Menu Overlay */}
         {isMobileMenuOpen && (
-          <div className="fixed inset-0 bg-white z-[100] md:hidden animate-fade-in">
-            <div className="absolute top-6 right-6">
-              <button onClick={() => setIsMobileMenuOpen(false)} className="text-medical-text p-2">
+          <div className="fixed inset-0 bg-[#fff8f6] z-[100] md:hidden flex flex-col animate-fade-in">
+            {/* Header in Overlay to maintain brand */}
+            <div className="flex justify-between items-center px-6 py-6 border-b border-medical-primary/5">
+              <div className="font-serif text-lg font-bold text-medical-text">
+                Dott.ssa Maria Cristina Sangiovanni
+              </div>
+              <button onClick={() => setIsMobileMenuOpen(false)} className="text-medical-text p-2 hover:bg-medical-primary/5 rounded-full">
                 <X size={32} />
               </button>
             </div>
-            <div className="flex flex-col items-center justify-center h-full space-y-10 text-2xl font-serif text-medical-text">
-              <button onClick={() => { setCurrentPage('home'); setIsMobileMenuOpen(false); }} className={currentPage === 'home' ? 'text-medical-primary italic underline underline-offset-8' : ''}>Home</button>
-              <button onClick={() => { setCurrentPage('servizi'); setIsMobileMenuOpen(false); }} className={currentPage === 'servizi' ? 'text-medical-primary italic underline underline-offset-8' : ''}>Di cosa mi occupo</button>
-              <button onClick={() => { setCurrentPage('about'); setIsMobileMenuOpen(false); }} className={currentPage === 'about' ? 'text-medical-primary italic underline underline-offset-8' : ''}>Chi Sono</button>
-              <button onClick={() => { scrollToSection('contatti'); setIsMobileMenuOpen(false); }} className="text-medical-text/60">Contatti</button>
-              <div className="pt-8">
-                <Button variant="dark" className="px-12 py-5 text-lg" onClick={() => { scrollToSection('contatti'); setIsMobileMenuOpen(false); }}>Prenota Visita</Button>
+
+            {/* Menu Links - Centered and Huge */}
+            <div className="flex-grow flex flex-col items-center justify-center space-y-12 pb-20">
+              <button 
+                onClick={() => { setCurrentPage('home'); setIsMobileMenuOpen(false); }} 
+                className={`text-4xl font-serif tracking-tight ${currentPage === 'home' ? 'text-medical-primary italic underline underline-offset-8' : 'text-medical-text'}`}
+              >
+                Home
+              </button>
+              <button 
+                onClick={() => { setCurrentPage('servizi'); setIsMobileMenuOpen(false); }} 
+                className={`text-4xl font-serif tracking-tight ${currentPage === 'servizi' ? 'text-medical-primary italic underline underline-offset-8' : 'text-medical-text'}`}
+              >
+                Di cosa mi occupo
+              </button>
+              <button 
+                onClick={() => { setCurrentPage('about'); setIsMobileMenuOpen(false); }} 
+                className={`text-4xl font-serif tracking-tight ${currentPage === 'about' ? 'text-medical-primary italic underline underline-offset-8' : 'text-medical-text'}`}
+              >
+                Chi Sono
+              </button>
+              <button 
+                onClick={() => { scrollToSection('contatti'); setIsMobileMenuOpen(false); }} 
+                className="text-4xl font-serif tracking-tight text-medical-text/60"
+              >
+                Contatti
+              </button>
+              
+              <div className="pt-8 w-full px-12">
+                <Button 
+                  variant="dark" 
+                  className="w-full py-6 text-xl shadow-xl" 
+                  onClick={() => { scrollToSection('contatti'); setIsMobileMenuOpen(false); }}
+                >
+                  Prenota Visita
+                </Button>
               </div>
             </div>
           </div>
