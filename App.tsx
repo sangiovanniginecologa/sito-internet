@@ -661,7 +661,7 @@ const App: React.FC = () => {
 
             <div className="grid md:grid-cols-2 gap-16 items-start">
               {/* Left Side: Image */}
-              <div className="rounded-[40px] overflow-hidden shadow-sm h-[550px]">
+              <div className="rounded-[40px] overflow-hidden shadow-sm h-[350px] md:h-[550px]">
                 <img
                   src="/assets/contact_desk.jpg"
                   alt="Contatti Studio"
@@ -672,13 +672,13 @@ const App: React.FC = () => {
               {/* Right Side: Contact Card and Reminder */}
               <div className="space-y-8">
                 {/* White Contact Card */}
-                <div className="bg-white p-10 rounded-[40px] shadow-sm border border-medical-primary/5 space-y-10">
+                <div className="bg-white p-6 md:p-10 rounded-[40px] shadow-sm border border-medical-primary/5 space-y-10">
                   {/* WhatsApp */}
-                  <a href="https://wa.me/393337631097" target="_blank" rel="noopener noreferrer" className="flex items-start gap-6 group cursor-pointer">
+                  <a href="https://wa.me/393337631097" target="_blank" rel="noopener noreferrer" className="flex items-start gap-4 md:gap-6 group cursor-pointer">
                     <div className="w-12 h-12 bg-[#E8F5E9] rounded-2xl flex items-center justify-center text-[#4CAF50] shrink-0 transition-transform group-hover:scale-110">
                       <MessageCircle size={24} />
                     </div>
-                    <div className="space-y-1">
+                    <div className="space-y-1 overflow-hidden">
                       <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-medical-text/40">Whatsapp</h4>
                       <p className="text-xl font-serif text-medical-text font-bold">Invia un messaggio</p>
                       <p className="text-sm text-medical-text/50">Risposta rapida durante gli orari di segreteria.</p>
@@ -686,23 +686,25 @@ const App: React.FC = () => {
                   </a>
 
                   {/* Email */}
-                  <a href="mailto:sangiovanniginecologa@gmail.com" className="flex items-start gap-6 group cursor-pointer">
+                  <a href="mailto:sangiovanniginecologa@gmail.com" className="flex items-start gap-4 md:gap-6 group cursor-pointer">
                     <div className="w-12 h-12 bg-medical-bg rounded-2xl flex items-center justify-center text-medical-primary shrink-0 transition-transform group-hover:scale-110">
                       <Mail size={24} />
                     </div>
-                    <div className="space-y-1">
+                    <div className="space-y-1 overflow-hidden">
                       <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-medical-text/40">Email</h4>
-                      <p className="text-xl font-serif text-medical-text font-bold">sangiovanniginecologa@gmail.com</p>
+                      <p className="text-lg md:text-xl font-serif text-medical-text font-bold break-all leading-tight">
+                        sangiovanniginecologa@gmail.com
+                      </p>
                       <p className="text-sm text-medical-text/50">Riceverai risposta il prima possibile.</p>
                     </div>
                   </a>
 
                   {/* Ospedale */}
-                  <div className="flex items-start gap-6 group">
+                  <div className="flex items-start gap-4 md:gap-6 group">
                     <div className="w-12 h-12 bg-medical-bg rounded-2xl flex items-center justify-center text-medical-primary shrink-0 transition-transform group-hover:scale-110">
                       <Building2 size={24} />
                     </div>
-                    <div className="space-y-2">
+                    <div className="space-y-2 overflow-hidden">
                       <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-medical-text/40">Ospedale</h4>
                       <p className="text-xl font-serif text-medical-text font-bold leading-tight">Ospedale G.B. Grassi – ASL Roma 3 (Ostia)</p>
                       <p className="text-sm text-medical-text/50">Attività clinica e assistenziale.</p>
@@ -741,9 +743,9 @@ const App: React.FC = () => {
             </div>
 
             {/* Reminder Card - Now Full Width Below the Grid */}
-            <div className="mt-12 bg-[#F3E5DC] p-10 rounded-[40px] shadow-sm border border-medical-primary/5">
-              <div className="flex flex-col md:flex-row items-center gap-8 justify-between">
-                <div className="flex items-center gap-6">
+            <div className="mt-12 bg-[#F3E5DC] p-6 md:p-10 rounded-[40px] shadow-sm border border-medical-primary/5">
+              <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8 justify-between text-center md:text-left">
+                <div className="flex flex-col md:flex-row items-center gap-6">
                   <div className="w-16 h-16 bg-white/40 rounded-2xl flex items-center justify-center text-medical-primary shrink-0">
                     <Calendar size={32} />
                   </div>
