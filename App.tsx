@@ -416,12 +416,12 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-medical-bg font-sans text-medical-text">
+    <div className="min-h-screen bg-medical-bg font-sans text-medical-text w-full overflow-x-hidden relative">
 
       {/* Navbar - Hidden when mobile menu is open to avoid double buttons */}
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isMobileMenuOpen ? 'hidden' : scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm py-4' : 'bg-transparent py-6'}`}>
-        <div className="container mx-auto px-6 flex justify-between items-center">
-          <div className="font-serif text-xl md:text-2xl font-bold tracking-tight text-medical-text">
+        <div className="container mx-auto px-6 flex justify-between items-center h-full">
+          <div className="font-serif text-base md:text-2xl font-bold tracking-tight text-medical-text max-w-[70%] leading-tight">
             Dott.ssa Maria Cristina Sangiovanni
           </div>
           
